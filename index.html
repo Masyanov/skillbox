@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css"/>
+    <link rel="stylesheet" href="/css/choices.min.css">
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+    <main class="container">
+    <section class="section-item  category">
+        <div class="category__container">
+            <h2 class="sub-title">Категории:</h2>
+            <label class="category__items">
+                <input class="input__category" type="checkbox">
+                <span class="list-reset check">Динозавры</span>
+            </label>
+            <label class="category__items">
+                <input class="input__category" type="checkbox">
+                <span class="list-reset check">Медведи</span>
+            </label>
+            <label class="category__items">
+                <input class="input__category" type="checkbox">
+                <span class="list-reset check">Косули</span>
+            </label>
+            <label class="category__items">
+                <input class="input__category" type="checkbox">
+                <span class="list-reset check">Лисы</span>
+            </label>
+            <label class="category__items">
+                <input class="input__category" type="checkbox">
+                <span class="list-reset check">Волки</span>
+            </label>
+            <label class="category__items">
+                <input class="input__category" type="checkbox">
+                <span class="list-reset check">Олени и лоси</span>
+            </label>
+        </div>
+    </section>
+
+<!-- custom scroll -->
+
+<section class="section-item">
+    <div class="customscroll" data-simplebar>
+        Сложно сказать, почему многие известные личности представлены в исключительно положительном свете. Лишь активно развивающиеся страны третьего мира будут объективно рассмотрены соответствующими инстанциями. Мы вынуждены отталкиваться от того, что высокотехнологичная концепция общественного уклада представляет собой интересный эксперимент проверки глубокомысленных рассуждений. Имеется спорная точка зрения, гласящая примерно следующее: непосредственные участники технического прогресса освещают чрезвычайно интересные особенности картины в целом, однако конкретные выводы, разумеется, обнародованы. Значимость этих проблем настолько очевидна, что социально-экономическое развитие, а также свежий взгляд на привычные вещи - безусловно открывает новые горизонты для первоочередных требований.
+    </div>
+</section>
+
+<!-- map -->
+
+<section class="section-item">
+    <div id="map" style="width: 600px; height: 400px"></div>
+</section>
+<!-- tooltip -->
+
+<section class="section-item">
+    <div class="tooltip">
+        <p class="tooltip__desc">
+            Следует отметить, что социально-экономическое развитие способствует повышению качества переосмысления внешнеэкономических политик.
+            <span class="marker" data-tooltip="Глава 2, страница 176">i</span>
+        </p>
+    </div>
+</section>
+
+<!-- sellect -->
+
+<section class="section-item">
+  <div class="material">
+    <select name="matter" id="matter">
+        <option>Материал</option>
+        <option value="">Древесина</option>
+        <option value="">Металл</option>
+        <option value="">Камень</option>
+        <option value="">Пластик</option>
+        <option value="">Композитный</option>
+        <option value="">Гипс</option>
+    </select>
+  </div>
+</section>
+
+<!-- form -->
+
+
+<section class="form__hw">
+  <div class="footer__middle-block">
+    <form action="" class="contact-form form">
+      <p class="contact-form__description"></p>
+      <div class="contact-form__input-wrapper">
+        <div class="js-validate-error-field"></div>
+        <input name="Имя" type="text" class="contact-form__input contact-form__input_name" placeholder="Имя*" data-validate-field="name">
+      </div>
+
+      <div class="contact-form__input-wrapper">
+        <div class="js-validate-error-field"></div>
+        <input name="tel" type="tel" class="form-control contact-form__input contact-form__input_tel" placeholder="Телефон*" data-validate-field="tel" data-validate-rules="phone">
+      </div>
+
+      <div class="contact-form__input-wrapper">
+        <div class="js-validate-error-field"></div>
+        <input name="email" type="email" class="contact-form__input contact-form__input_email" placeholder="E-mail*" data-validate-field="mail">
+     </div>
+
+      <button class="contact-form__button" type="submit"> Заказать </button>
+    </form>
+</div>
+</section>
+
+
+
+
+<script src="dist/inputmask.min.js"></script>
+<script src="dist/just-validate.min.js"></script>
+
+<!-- script form -->
+
+<script>
+  new JustValidate('.form', {
+  rules: {
+      name: {
+          required: true,
+          minLenght: 2,
+          maxLenght: 10
+      },
+
+      tel: {
+          required: true,
+          function: (name, value) => {
+              const phone =selector.inputmask.unmaskedvalue()
+              return Number(phone) && phone.lenght === 10
+          }
+      },
+
+      mail: {
+          required: true,
+          email: true
+      },
+  },
+});
+</script>
+
+</main>
+
+<!-- Scripts -->
+
+
+<script src="https://api-maps.yandex.ru/2.1/?apikey=ваш API-ключ&lang=ru_RU" type="text/javascript"></script>
+
+
+<noscript>
+  <style>
+      .simplebar-content-wrapper {
+        overflow: auto;
+      }
+      </style>
+  </noscript>
+
+  <!-- script sellect -->
+
+<script src="/js/choices.min.js"></script>
+
+<script>
+const element = document.querySelector('#matter');
+const choices = new Choices(element, {
+    searchEnabled: false,
+    itemSelectText: '',
+    });
+
+</script>
+
+
+
+
+
+<!-- Script map -->
+
+<script type="text/javascript">
+    ymaps.ready(init);
+    function init(){
+        var myMap = new ymaps.Map("map", {
+            center: [48.87, 2.35],
+            zoom: 17
+        });
+var myGeoObject = new ymaps.GeoObject({
+    geometry: {
+        type: "Point",
+        coordinates: [48.87, 2.35]
+    }
+});
+
+var myPlacemark = new ymaps.Placemark([48.87, 2.35], {}, {
+    iconLayout: 'default#image',
+    iconImageHref: '/img/Subtract.svg',
+    iconImageSize: [30, 42],
+    iconImageOffset: [-3,-42]
+});
+
+myMap.geoObjects.add(myPlacemark);
+    }
+</script>
+
+<!-- script mask -->
+
+<script>
+    var selector = document.querySelector("input[type='tel']");
+    var im = new Inputmask("+7 (999) 999-99-99");
+    im.mask(selector);
+</script>
+
+
+<script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
+<script src="/js/main.js"></script>
+</body>
+
+</html>
